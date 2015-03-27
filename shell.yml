@@ -43,30 +43,17 @@
   gather_facts: yes
   tags: dotfiles
   tasks:
-    - name: homeshick | clone homeshick
-      git:  repo=https://github.com/andsens/homeshick.git
-            dest=~/.homesick/repos/homeshick
-            update=no
-
-    - name: homshick | stat homeshick script to verify installed
-      stat: path=~/.homesick/repos/homeshick/home/.homeshick
-      register: homeshick_installed
-
-    - name: homeshick | symlink homeshick
-      file: src=~/.homesick/repos/homeshick/home/.homeshick
-            dest=~/.homeshick
-            state=link
-      when: homeshick_installed.stat.exists
-
-    - name: homeshick | dotfiles cloned
-      git:  repo=https://github.com/{{ ansible_user_id }}/dotfiles.git
-            dest=~/.homesick/repos/dotfiles
+    - name: dotfiles | cloned
+      git:  repo=git@github.com:{{ ansible_user_id }}/dotfiles.git
+            dest=~/.dotfiles
             update=no
       register: dotfiles_cloned
 
-    - name: homeshick | dotfiles force link if just first installed
+    - name: dotfiles | force link if just first installed
       when: dotfiles_cloned|changed
-      command: ~/.homeshick link dotfiles --force
+      command: rake install
+      args:
+        chdir: ~/.dotfiles
 
 
 - name: vim-janus
