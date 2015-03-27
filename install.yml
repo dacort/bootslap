@@ -42,9 +42,6 @@
 - name: Programming languages and environment platforms
   hosts: all
   tasks:
-    - include: tasks/elixir.yml  tags=elixir
-    - include: tasks/haskell.yml tags=haskell
-    - include: tasks/rust.yml    tags=rust,xtra
     - include: tasks/go.yml      tags=go
       vars:
         gopath: ~/src/go
@@ -56,6 +53,8 @@
           - bower
           - grunt-cli
           - yo
+        node_versions:
+          - v0.10.29
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
@@ -80,53 +79,67 @@
       - firefox
       # text editors i hate the least
       - atom
-      - macvim
-      - mou
+      - sublime-text
+      # - macvim
+      # - mou
       # virtual machine management
-      - vmware-fusion
+      # - vmware-fusion
       # TODO: not currently doing any VM based development, reenable below when
       # doing so.
       # - vagrant
-      # - virtualbox
+      - virtualbox
       # other dev tools
-      - dash
+      # - dash
       - github
+      - iterm2
       # non-dev stuff for general productivity
-      - caffeine
-      - cloud
-      - daisydisk
+      # - caffeine
+      # - cloud
+      # - daisydisk
+      - istat-menus
       - dropbox
       - flux
-      - sizeup
+      - bartender
+      - crashplan
+      - divvy
+      - 1password
+      # - sizeup
       # bloated business shit
-      - skype
+      - slack
+      # - skype
       # - evernote #TODO possible to get rid of this bloated POS?
       # non-dev stuff for general unproductivity
-      - steam
+      - charles
+      # - steam
       - spotify
-      - transmission
-      - vlc
+      - sonos
+      # - transmission
+      # - vlc
 
   - name: install homebrew tools
     tags: brews
     homebrew: state=present name={{ item }}
     with_items:
       # dev tools
-      - ack
+      # - ack
       - jq
-      - gist
+      # - gist
+      - boot2docker
+      - docker
+      # app engine
+      - go-app-engine-64
       # heroku style development
       - heroku-toolbelt
-      - forego
+      # - forego
       # networking tools
       - curl
       - wget
-      - speedtest_cli
+      # - speedtest_cli
       # security tools
-      - gnupg
+      # - gnupg
       - nmap
-      - pwgen
+      # - pwgen
       # media related tools
-      - imagesnap
-      - pianobar
-      - ffmpeg
+      # - imagesnap
+      # - pianobar
+      # - ffmpeg

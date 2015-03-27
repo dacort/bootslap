@@ -1,9 +1,18 @@
 ---
-# we need to force always_run on this because otherwise the npm-tasks following
-# will barf in check-mode.
-- name: install NodeJS platform
-  homebrew: name=node state=present
+- name: install nodenv to manage installed node versions
+  homebrew: name=nodenv state=latest
+  always_run: yes
+
+- name: nodenv | check which node versions are installed
+  shell: nodenv versions --bare
+  register: nodes_installed
+  changed_when: false
   always_run: true
+
+- name: nodenv | install any mission versions of ruby
+  command: nodenv install {{ item }}
+  when: not nodes_installed.stdout | search( '{{ item}}' )
+  with_items: node_versions
 
 - name: install NodeJS global dev tools
   npm: state=present name={{ item }} global=yes

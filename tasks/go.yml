@@ -1,6 +1,6 @@
 ---
 - name: install Go platform
-  homebrew: name=go state=present
+  homebrew: name=go12 state=present install_options=cross-compile-common
 
 - name: install tools needed for `go get` to function as expected
   homebrew: name={{ item }} state=present
@@ -20,3 +20,4 @@
     - golang.org/x/tools/cmd/vet
     - golang.org/x/tools/cmd/cover
     - github.com/tools/godep
+    - github.com/bradfitz/goimports

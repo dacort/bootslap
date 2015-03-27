@@ -46,6 +46,8 @@
 
 - name: rbenv | install any missing versions of ruby
   command: rbenv install {{ item }}
+  environment:
+    CONFIGURE_OPTS: "--with-gcc=clang"
   when: not rubies_installed.stdout | search( '{{ item }}' )
   with_items: rubies
 

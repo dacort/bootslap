@@ -6,16 +6,16 @@
     - system
   tasks:
 
-    #- enable ssh
+    #- disable ssh
     - name: SSH | check if remote login status is on
       sudo: yes
       command: systemsetup -getremotelogin
       register: remotelogin
-      changed_when: "remotelogin.stdout.startswith('Remote Login: On') == False"
+      changed_when: "remotelogin.stdout.startswith('Remote Login: On') == True"
 
-    - name: SSH | enable remote login
+    - name: SSH | disable remote login
       sudo: yes
-      command: systemsetup -setremotelogin on
+      command: systemsetup -setremotelogin off
       when: remotelogin|changed
 
     # Enable the OSX default firewall
@@ -160,6 +160,20 @@
                     key=Clicking
                     type=boolean
                     value=true
+
+    - name: UI | Screensaver | bottom right hot corner
+      osx_defaults: domain=com.apple.dock
+                    key=wvous-br-corner
+                    type=int
+                    value=5
+      notify: killall Dock
+
+    - name: UI | Screensaver | bottom right hot corner mod
+      osx_defaults: domain=com.apple.dock
+                    key=wvous-br-modifier
+                    type=int
+                    value=0
+      notify: killall Dock
 
 
 
