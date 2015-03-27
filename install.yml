@@ -10,6 +10,7 @@
     with_items:
       - caskroom/cask
       - homebrew/binary
+      - homebrew/versions
 
   - name: get homebrew sources setup
     homebrew: name=brew-cask  state=present
@@ -49,10 +50,10 @@
     - include: tasks/node.yml    tags=node
       vars:
         global_modules:
-          - coffee-script
-          - bower
-          - grunt-cli
-          - yo
+          # - coffee-script
+          # - bower
+          # - grunt-cli
+          # - yo
         node_versions:
           - v0.10.29
 
@@ -92,6 +93,7 @@
       # - dash
       - github
       - iterm2
+      - java
       # non-dev stuff for general productivity
       # - caffeine
       # - cloud

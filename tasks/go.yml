@@ -1,6 +1,7 @@
 ---
+
 - name: install Go platform
-  homebrew: name=go12 state=present install_options=cross-compile-common
+  homebrew: name=go12 state=present install_options=with-cc-common
 
 - name: install tools needed for `go get` to function as expected
   homebrew: name={{ item }} state=present
