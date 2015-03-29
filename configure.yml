@@ -36,7 +36,6 @@
                     type=string
                     value=true
 
-
     # TODO: check for full disk encryption! (maybe dont manually install)
 
 
@@ -114,6 +113,10 @@
       command:  dscl . create /Users/{{ ansible_user_id }} Picture "{{ avatar.dest | expanduser }}"
       when:     dsclPicture|changed
 
+- name: Apps Setup
+  hosts: all
+  tasks:
+    - include: configs/divvy.yml    tags=divvy
 
 - name: Apps/GUI Configuration
   hosts: all
@@ -131,6 +134,13 @@
                     key=showhidden
                     type=bool
                     value=true
+      notify: killall Dock
+
+    - name: UI | Menu | battery percentage
+      osx_defaults: domain=com.apple.menuextra.battery
+                    key=ShowPercent
+                    type=string
+                    value=YES
       notify: killall Dock
 
     - name: UI | Dock | set icon size to {{ dock.icon_size }}
@@ -160,6 +170,12 @@
                     key=Clicking
                     type=boolean
                     value=true
+
+    - name: UI | Trackpad | enable tap to click
+      osx_defaults: domain=NSGlobalDomain
+                    key=com.apple.mouse.tapBehavior
+                    type=int
+                    value=1
 
     - name: UI | Screensaver | bottom right hot corner
       osx_defaults: domain=com.apple.dock
