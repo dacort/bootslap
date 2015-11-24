@@ -118,6 +118,30 @@
   tasks:
     - include: configs/divvy.yml    tags=divvy
 
+- name: Apps/Interface Configuration
+  hosts: all
+  tags: interface
+
+  tasks:
+    #
+    # Configuration related to the OSX Interface
+    #
+    - name: Interface | Mouse | tap to click
+      osx_defaults: domain=com.apple.driver.AppleBluetoothMultitouch.trackpad
+                    key=Clicking
+                    type=bool
+                    value=true
+      # source: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+      # echo "Set a shorter Delay until key repeat"
+      # defaults write NSGlobalDomain InitialKeyRepeat -int 12
+      # TODO: Disable auto-correct? https://gist.github.com/mbinna/2357277
+
+    - name: Interface | Keyboard | keyboard repeat
+      osx_defaults: domain=NSGlobalDomain
+                    key=KeyRepeat
+                    type=int
+                    value=1
+
 - name: Apps/GUI Configuration
   hosts: all
   tags: gui
@@ -142,6 +166,7 @@
                     type=string
                     value=YES
       notify: killall Dock
+      # source: https://github.com/josh-/dotfiles/blob/master/osx
 
     - name: UI | Dock | set icon size to {{ dock.icon_size }}
       osx_defaults: domain=com.apple.dock
@@ -191,7 +216,17 @@
                     value=0
       notify: killall Dock
 
+    - name: UI | Screensaver | Require password
+      osx_defaults: domain=com.apple.screensaver
+                    key=askForPassword
+                    type=int
+                    value=1
 
+    - name: UI | Screensaver | Require password in 5 seconds
+      osx_defaults: domain=com.apple.screensaver
+                    key=askForPasswordDelay
+                    type=int
+                    value=5
 
     #
     # Configuration related to GUI apps
@@ -213,6 +248,12 @@
                     key=SendDoNotTrackHTTPHeader
                     type=boolean
                     value=true
+
+    - name: Apps | Messages | save conversations on close"
+      osx_defaults: domain=com.apple.iChat
+                    key=SaveConversationsOnClose
+                    type=int
+                    value=1
 
 
     # TODO: install solarized theme for terminal.app

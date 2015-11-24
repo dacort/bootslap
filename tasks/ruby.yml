@@ -47,9 +47,11 @@
 - name: rbenv | install any missing versions of ruby
   command: rbenv install {{ item }}
   environment:
-    CONFIGURE_OPTS: "--with-gcc=clang"
+    CONFIGURE_OPTS: "--with-gcc=clang --enable-shared"
   when: not rubies_installed.stdout | search( '{{ item }}' )
   with_items: rubies
+  # CONFIGURE_OPTS="--with-gcc=clang --enable-shared"
+  # https://gist.github.com/Gedrovits/8218833 (for yajl)
 
 - name: rbenv | check current global ruby
   command: rbenv global
