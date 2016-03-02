@@ -144,3 +144,6 @@
       # - imagesnap
       # - pianobar
       # - ffmpeg
+      # web dev
+      - nginx
+      - ngrok
