@@ -54,7 +54,8 @@
           - ember-cli
         node_versions:
           - v0.10.29
-          - v0.12.7
+          - 0.12.7
+          - 5.0.0
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
