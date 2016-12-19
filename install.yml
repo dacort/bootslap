@@ -127,15 +127,8 @@
       - wget
       - s3cmd
       - awscli
-      # - speedtest_cli
       # security tools
-      # - gnupg
       - nmap
-      # - pwgen
-      # media related tools
-      # - imagesnap
-      # - pianobar
-      # - ffmpeg
       # web dev
       - nginx
       - ngrok2
