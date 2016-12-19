@@ -53,9 +53,10 @@
           - doctoc
           - ember-cli
         node_versions:
-          - v0.10.29
+          - 0.10.29
           - 0.12.7
-          - 5.0.0
+          - 4.3.2
+          - 5.6.0
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
@@ -63,6 +64,7 @@
         default_gems:
           - bundler
         rubies:
+          - 1.9.3-p547
           - 1.9.3-p551
           - 2.1.5
           - 2.2.1
@@ -81,23 +83,16 @@
       # text editors i hate the least
       - atom
       - sublime-text
-      # - macvim
-      # - mou
       # virtual machine management
-      # - vmware-fusion
-      # TODO: not currently doing any VM based development, reenable below when
-      # doing so.
-      # - vagrant
+      - vagrant
       - virtualbox
       # other dev tools
-      # - dash
-      - github
+      - hub
       - iterm2
       - java
+      # analyst monster
+      - sqlworkbenchj
       # non-dev stuff for general productivity
-      # - caffeine
-      # - cloud
-      # - daisydisk
       - istat-menus
       - dropbox
       - flux
@@ -105,29 +100,23 @@
       - crashplan
       - divvy
       - 1password
-      # - sizeup
       # bloated business shit
       - slack
-      # - skype
-      # - evernote #TODO possible to get rid of this bloated POS?
       # non-dev stuff for general unproductivity
       - charles
+      - cloak
       # - steam
       - spotify
       - sonos
-      # - transmission
-      # - vlc
 
   - name: install homebrew tools
     tags: brews
     homebrew: state=present name={{ item }}
     with_items:
       # dev tools
-      # - ack
       - jq
-      # - gist
-      - boot2docker
-      - docker
+      # - boot2docker
+      # - docker
       # app engine
       - go-app-engine-64
       # heroku style development
@@ -136,6 +125,8 @@
       # networking tools
       - curl
       - wget
+      - s3cmd
+      - awscli
       # - speedtest_cli
       # security tools
       # - gnupg
@@ -147,4 +138,11 @@
       # - ffmpeg
       # web dev
       - nginx
-      - ngrok
+      - ngrok2
+      # necessary for work things
+      - mysql
+      - postgres
+      - cmake
+      - libxml2
+      - qt
+      - maven

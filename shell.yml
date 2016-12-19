@@ -47,6 +47,7 @@
       git:  repo=git@github.com:{{ ansible_user_id }}/dotfiles.git
             dest=~/.dotfiles
             update=no
+            accept_hostkey=True
       register: dotfiles_cloned
 
     - name: dotfiles | force link if just first installed

@@ -32,4 +32,4 @@
  # Allow divvy to run
 - name: Divvy | accessibility
   sudo: yes
-  command: sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT OR REPLACE INTO access VALUES('kTCCServiceAccessibility','com.mizage.direct.Divvy',0,1,1,NULL);"
+  command: sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT OR REPLACE INTO access VALUES('kTCCServiceAccessibility','com.mizage.direct.Divvy',0,1,1,NULL,NULL);"
