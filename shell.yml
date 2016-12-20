@@ -57,33 +57,6 @@
         chdir: ~/.dotfiles
 
 
-- name: vim-janus
-  hosts: all
-  gather_facts: no
-  tags: vimjanus
-  tasks:
-    - name: install vim-janus
-      git: repo=https://github.com/carlhuda/janus.git
-           dest=~/.vim
-           update=no
-           recursive=no
-      register: janus_cloned
-
-    - name: bootstrap vim-janus if just first installed
-      when: janus_cloned|changed
-      command: rake chdir=~/.vim
-
-
-- name: install scm_breeze
-  hosts: all
-  gather_facts: no
-  tags: scmbreeze
-  tasks:
-    - name: install scm_breeze
-      git: repo=https://github.com/ndbroadbent/scm_breeze.git
-           dest=~/.scm_breeze
-           update=yes
-
 - name: xtra placeholder (prevents error condition on --skip-tags=xtra)
   hosts: all
   gather_facts: no
