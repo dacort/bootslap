@@ -65,6 +65,10 @@
           - 2.1.5
           - 2.2.1
 
+    - name: install various libraries with pip
+      pip: name={{item}} state=present
+      with_items:
+        - virtualenv
 
 - name: Applications and tools
   hosts: all
@@ -126,7 +130,7 @@
       - nmap
       # web dev
       - nginx
-      # - ngrok2 # SHA256 is failing for some reason. :( 
+      # - ngrok2 # SHA256 is failing for some reason. :(
       # necessary for work things
       - mysql
       - postgres
