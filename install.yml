@@ -83,7 +83,6 @@
       - vagrant
       - virtualbox
       # other dev tools
-      - hub
       - iterm2
       - java
       # analyst monster
@@ -114,7 +113,7 @@
       # - boot2docker
       # - docker
       # app engine
-      - go-app-engine-64
+      # - go-app-engine-64
       # heroku style development
       - heroku-toolbelt
       # - forego
@@ -127,7 +126,7 @@
       - nmap
       # web dev
       - nginx
-      - ngrok2
+      # - ngrok2 # SHA256 is failing for some reason. :( 
       # necessary for work things
       - mysql
       - postgres
