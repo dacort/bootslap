@@ -36,7 +36,7 @@
 
 - name: register config for rbenv-default-gems plugin
   lineinfile: dest=~/.rbenv/default-gems line='{{item}}' state=present create=yes
-  with_items: default_gems
+  with_items: "{{default_gems}}"
 
 - name: rbenv | check which ruby versions are installed
   shell: rbenv versions --bare
@@ -49,7 +49,7 @@
   environment:
     CONFIGURE_OPTS: "--with-gcc=clang --enable-shared"
   when: not rubies_installed.stdout | search( '{{ item }}' )
-  with_items: rubies
+  with_items: "{{rubies}}"
   # CONFIGURE_OPTS="--with-gcc=clang --enable-shared"
   # https://gist.github.com/Gedrovits/8218833 (for yajl)
 

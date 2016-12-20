@@ -12,5 +12,5 @@
 - name: nodenv | install any missing versions of node
   command: nodenv install {{ item }}
   when: not nodes_installed.stdout | search( '{{ item}}' )
-  with_items: node_versions
+  with_items: "{{node_versions}}"
 
