@@ -12,10 +12,6 @@
       - homebrew/binary
       - homebrew/versions
 
-  - name: get homebrew sources setup
-    homebrew: name=brew-cask  state=present
-    always_run: yes
-
 - name: essential tools for shell environment
   hosts: all
   tags: essential
@@ -43,9 +39,9 @@
 - name: Programming languages and environment platforms
   hosts: all
   tasks:
-    - include: tasks/go.yml      tags=go
-      vars:
-        gopath: ~/src/go
+    #- include: tasks/go.yml      tags=go
+    #  vars:
+    #    gopath: ~/src/go
 
     - include: tasks/node.yml    tags=node
       vars:
