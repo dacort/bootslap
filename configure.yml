@@ -264,6 +264,10 @@
 
     # TODO: install solarized theme for terminal.app
     # see https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+    # Documents to local disk by default: defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+    # Disable sleep completely: pmset -a sleep 0
+    # OMG DID https://www.macissues.com/2015/01/15/sleep-and-power-settings-possibly-behind-wi-fi-dropouts-in-yosemite/ fix it?
+    # pmset -b sleep 0
 
 
   handlers:
