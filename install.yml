@@ -69,6 +69,7 @@
       pip: name={{item}} state=present
       with_items:
         - virtualenv
+        - flake8
 
 - name: Applications and tools
   hosts: all
@@ -99,6 +100,7 @@
       - crashplan
       - divvy
       - 1password
+      - qbserve
       # bloated business shit
       - slack
       # non-dev stuff for general unproductivity
