@@ -268,6 +268,12 @@
     # Disable sleep completely: pmset -a sleep 0
     # OMG DID https://www.macissues.com/2015/01/15/sleep-and-power-settings-possibly-behind-wi-fi-dropouts-in-yosemite/ fix it?
     # pmset -b sleep 0
+    #
+    # VPN Settings
+    #  security find-generic-password -a damon@simplymeasured.com -D "VPN Password" -g
+    # http://www.proposedsolution.com/solutions/vpn-ipsec-prompting-saved-password/
+    #
+    # Also a good site w/settings: https://gist.github.com/tylerwalts/9375263
 
 
   handlers:
