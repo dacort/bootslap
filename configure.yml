@@ -274,6 +274,8 @@
     # http://www.proposedsolution.com/solutions/vpn-ipsec-prompting-saved-password/
     #
     # Also a good site w/settings: https://gist.github.com/tylerwalts/9375263
+    #
+    # And someday...replace Divvy: https://github.com/ashfinal/awesome-hammerspoon
 
 
   handlers:
