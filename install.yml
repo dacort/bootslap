@@ -6,7 +6,7 @@
   tasks:
   - name: get homebrew taps setup
     homebrew_tap: tap={{ item }} state=present
-    always_run: yes
+    check_mode: no
     with_items:
       - caskroom/cask
       - homebrew/binary
@@ -64,6 +64,7 @@
           - 1.9.3-p551
           - 2.1.5
           - 2.2.1
+          - 2.2.7
 
     - name: install various libraries with pip
       pip: name={{item}} state=present
@@ -109,6 +110,7 @@
       # - steam
       - spotify
       - sonos
+      - boom
 
   - name: install homebrew tools
     tags: brews
