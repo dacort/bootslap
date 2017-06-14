@@ -11,7 +11,7 @@
       shell:    dscl . -read ~ UserShell | awk '{print $2}'
       register: usershell
       changed_when: usershell.stdout != "{{ desired_shell }}"
-      always_run: yes
+      check_mode: no
 
     # Note: if make this sudo: yes, then playbook will require being run with
     # -K argument and password up front, but won't prompt user when changing

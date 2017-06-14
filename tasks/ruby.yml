@@ -1,7 +1,7 @@
 ---
 - name: install rbenv to manage installed ruby versions
   homebrew: name=rbenv state=latest
-  always_run: yes
+  check_mode: no
 
 - name: install ruby-build to build/install different ruby versions
   homebrew: name=ruby-build state=latest
@@ -42,7 +42,7 @@
   shell: rbenv versions --bare
   register: rubies_installed
   changed_when: false
-  always_run: true
+  check_mode: no
 
 - name: rbenv | install any missing versions of ruby
   command: rbenv install {{ item }}

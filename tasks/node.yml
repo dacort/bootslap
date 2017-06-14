@@ -1,16 +1,15 @@
 ---
 - name: install nodenv to manage installed node versions
   homebrew: name=nodenv state=latest
-  always_run: yes
+  check_mode: no
 
 - name: nodenv | check which node versions are installed
   shell: nodenv versions --bare
   register: nodes_installed
   changed_when: false
-  always_run: true
+  check_mode: no
 
 - name: nodenv | install any missing versions of node
   command: nodenv install {{ item }}
   when: not nodes_installed.stdout | search( '{{ item}}' )
   with_items: "{{node_versions}}"
-
