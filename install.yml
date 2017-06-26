@@ -63,8 +63,8 @@
           - 1.9.3-p547
           - 1.9.3-p551
           - 2.1.5
-          - 2.2.1
           - 2.2.7
+          - 2.3.4
 
     - name: install various libraries with pip
       pip: name={{item}} state=present
