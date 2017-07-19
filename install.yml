@@ -9,6 +9,7 @@
     check_mode: no
     with_items:
       - caskroom/cask
+      - caskroom/drivers
       - homebrew/binary
       - homebrew/versions
 
@@ -53,10 +54,11 @@
           - 0.12.7
           - 4.3.2
           - 5.6.0
+          - 6.5.0
 
     - include: tasks/ruby.yml    tags=ruby
       vars:
-        global_ruby: 2.2.1
+        global_ruby: 2.2.7
         default_gems:
           - bundler
         rubies:
