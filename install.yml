@@ -113,6 +113,8 @@
       - spotify
       - sonos
       - boom
+      # Networking work security stuff
+      - pritunl
 
   - name: install homebrew tools
     tags: brews
@@ -120,6 +122,7 @@
     with_items:
       # dev tools
       - jq
+      - python3
       # - boot2docker
       # - docker
       # app engine
