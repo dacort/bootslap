@@ -1,18 +1,4 @@
 ---
-- name: set up sources
-  hosts: all
-  tags: casks
-  sudo: false
-  tasks:
-  - name: get homebrew taps setup
-    homebrew_tap: tap={{ item }} state=present
-    check_mode: no
-    with_items:
-      - caskroom/cask
-      - caskroom/drivers
-      - homebrew/binary
-      - homebrew/versions
-
 - name: essential tools for shell environment
   hosts: all
   tags: essential
@@ -23,55 +9,12 @@
     with_items:
       - git
       - hub
-      - ssh-copy-id
-      - imagemagick
 
-  - name: remove legacy shell brews
-    homebrew: name={{ item }} state=absent
-    with_items:
-      - gh #gh is now hub
-
-  - name: install essential shell casks
-    homebrew_cask: name={{ item }} state=present
-    with_items:
-      - xquartz
-
-
-- name: Programming languages and environment platforms
-  hosts: all
-  tasks:
-    #- include: tasks/go.yml      tags=go
-    #  vars:
-    #    gopath: ~/src/go
-
-    - include: tasks/node.yml    tags=node
-      vars:
-        global_modules:
-          - doctoc
-          - ember-cli
-        node_versions:
-          - 4.3.2
-          - 8.9.0
-
-    - include: tasks/ruby.yml    tags=ruby
-      vars:
-        global_ruby: 2.3.5
-        default_gems:
-          - bundler
-        rubies:
-          - 2.3.5
-
-    - name: install various libraries with pip
-      pip: name={{item}} state=present
-      with_items:
-        - virtualenv
-        - flake8
+# More complex dev environments
+- import_playbook: playbooks/development/node.yml
+- import_playbook: playbooks/development/python.yml
+- import_playbook: playbooks/development/vscode.yml
     
-    - name: install gnu readline with easy_install
-      easy_install:
-        name: gnureadline
-        state: latest
-
 - name: Applications and tools
   hosts: all
   tasks:
@@ -83,34 +26,31 @@
       - google-chrome
       - firefox
       # all of the text editors
-      - atom
       - sublime-text
       - visual-studio-code
       # javaaaaaa
-      - java8
       - intellij-idea-ce
       # virtual machine management
-      - vagrant
       - virtualbox
       # other dev tools
       - iterm2
-      - qlmarkdown
-      - quicklook-json
+      - font-fira-code
+      - moreutils # isutf8 :)
+      - parquet-tools
+      - avro-tools
       # analyst monster
       - sqlworkbenchj
       # non-dev stuff for general productivity
-      - istat-menus5
-      # - bartender
-      - divvy
       - hammerspoon
       - 1password
       - qbserve
       # non-dev stuff for general unproductivity
-      # - charles
-      # - cloak
       - spotify
-      # - sonos
-      # - boom
+      # backups
+      - arq
+      # shell tools
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
 
   - name: install homebrew tools
     tags: brews
@@ -118,7 +58,10 @@
     with_items:
       # dev tools
       - jq
-      - python3
+      - ripgrep
+      - python
+      - python@2.5
       - wget
       - s3cmd
       - awscli
+      - maven@3.5

@@ -1,0 +1,31 @@
+---
+- name: NodeJS Development Environment
+  hosts: all
+  tags: node
+  vars:
+    global_modules:
+      - pure-prompt
+    node_versions:
+      - 10.15.3
+
+  tasks:
+    # we need to force always_run on this because otherwise the npm-tasks following
+    # will barf in check-mode.
+    - name: install NodeJS platform
+      homebrew: name=node state=present
+      check_mode: false
+
+    - name: install NodeJS global dev tools
+      npm: state=present name={{ item }} global=yes
+      with_items: "{{ global_modules }}"
+  
+    - name: list installed Node.js virtual environment versions
+      shell: nodenv versions --bare
+      register: nodes_installed
+      changed_when: false
+      check_mode: no
+
+    - name: install Node.js virtual environment builder
+      command: nodenv install {{ item }}
+      when: not nodes_installed.stdout | search( '{{ item}}' )
+      with_items: "{{node_versions}}"

@@ -1,0 +1,26 @@
+---
+- name: Python Development Environment
+  hosts: all
+  tags: node
+  vars:
+    global_libraries:
+      - virtualenv
+      - flake8
+      - pylint
+      - gnureadline
+
+  tasks:
+    # we need to force always_run on this because otherwise the npm-tasks following
+    # will barf in check-mode.
+    - name: install Python3 platform
+      homebrew: name=python state=present
+      check_mode: false
+
+    # We still do Python2 dev :)
+    - name: install Python2 platform
+      homebrew: name=python@2 state=present
+      check_mode: false
+
+    - name: install Python global dev tools
+      npm: state=present name={{ item }} global=yes
+      with_items: "{{ global_libraries }}"

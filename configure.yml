@@ -54,10 +54,10 @@
 
 
 
-- name: Apps Setup
-  hosts: all
-  tasks:
-    - include: configs/divvy.yml    tags=divvy
+#- name: Apps Setup
+#  hosts: all
+#  tasks:
+#    - include: configs/divvy.yml    tags=divvy
 
 - name: Apps/Interface Configuration
   hosts: all
@@ -101,6 +101,13 @@
                     value=true
       notify: killall Dock
 
+    - name: UI | Dock | only show open apps
+      osx_defaults: domain=com.apple.dock
+                    key=static-only
+                    type=bool
+                    value=true
+      notify: killall Dock
+
     - name: UI | Menu | battery percentage
       osx_defaults: domain=com.apple.menuextra.battery
                     key=ShowPercent
@@ -134,12 +141,6 @@
     - name: UI | Trackpad | enable tap to click
       osx_defaults: domain=com.apple.AppleMultitouchTrackpad
                     key=Clicking
-                    type=int
-                    value=1
-
-    - name: UI | Trackpad | enable tap to click
-      osx_defaults: domain=NSGlobalDomain
-                    key=com.apple.mouse.tapBehavior
                     type=int
                     value=1
 
@@ -196,11 +197,17 @@
                     type=boolean
                     value=true
 
-    - name: Apps | Messages | save conversations on close"
+    - name: Apps | Messages | save conversations on close
       osx_defaults: domain=com.apple.iChat
                     key=SaveConversationsOnClose
                     type=int
                     value=1
+    
+    - name: Apps | iTunes | don't autolaunch iTunes
+      osx_defaults: domain=com.apple.iTunes
+                    key=dontAutomaticallySyncIPods
+                    type=boolean
+                    value=true
 
 
     # TODO: install solarized theme for terminal.app

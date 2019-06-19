@@ -22,39 +22,23 @@
       when:  usershell|changed
 
 
-- name: install ohmyzsh for current user
-  hosts: all
-  gather_facts: no
-  tags: ohmyzsh
-  tasks:
-    - name: install oh-my-zsh
-      git:  repo=https://github.com/robbyrussell/oh-my-zsh.git
-            dest=~/.oh-my-zsh
-            update=no
-
-    - name: install syntax highlight plugin for ohmyzsh
-      git:  repo=https://github.com/zsh-users/zsh-syntax-highlighting.git
-            dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-            update=yes
-
-
-- name: dotfiles
-  hosts: all
-  gather_facts: yes
-  tags: dotfiles
-  tasks:
-    - name: dotfiles | cloned
-      git:  repo=git@github.com:{{ ansible_user_id }}/dotfiles.git
-            dest=~/.dotfiles
-            update=no
-            accept_hostkey=True
-      register: dotfiles_cloned
-
-    - name: dotfiles | force link if just first installed
-      when: dotfiles_cloned|changed
-      command: rake install
-      args:
-        chdir: ~/.dotfiles
+#- name: dotfiles
+#  hosts: all
+#  gather_facts: yes
+#  tags: dotfiles
+#  tasks:
+#    - name: dotfiles | cloned
+#      git:  repo=git@github.com:{{ ansible_user_id }}/dotfiles.git
+#            dest=~/.dotfiles
+#            update=no
+#            accept_hostkey=True
+#      register: dotfiles_cloned
+#
+#    - name: dotfiles | force link if just first installed
+#      when: dotfiles_cloned|changed
+#      command: rake install
+#      args:
+#        chdir: ~/.dotfiles
 
 
 - name: xtra placeholder (prevents error condition on --skip-tags=xtra)
