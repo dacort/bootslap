@@ -13,6 +13,7 @@
       - ms-python.python
       - mechatroner.rainbow-csv
       - VisualStudioExptTeam.vscodeintellicode
+      - adamhartford.vscode-base64
 
   tasks:
     - name: install vscode
