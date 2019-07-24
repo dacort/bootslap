@@ -6,7 +6,7 @@
   tasks:
   - name: install essential shell brews
     homebrew: name={{ item }} state=present
-    with_items:
+    loop:
       - git
       - hub
 
@@ -24,33 +24,29 @@
     with_items:
       # webdevs need all the webs (except opera lol)
       - google-chrome
-      - firefox
+      # - firefox
       # all of the text editors
       - sublime-text
       - visual-studio-code
       # javaaaaaa
+      - adoptopenjdk/openjdk/adoptopenjdk8
       - intellij-idea-ce
       # virtual machine management
       - virtualbox
       # other dev tools
       - iterm2
-      - font-fira-code
-      - moreutils # isutf8 :)
-      - parquet-tools
-      - avro-tools
+      - homebrew/cask-fonts/font-fira-code
       # analyst monster
       - sqlworkbenchj
       # non-dev stuff for general productivity
       - hammerspoon
       - 1password
       - qbserve
+      - istat-menus
       # non-dev stuff for general unproductivity
       - spotify
       # backups
       - arq
-      # shell tools
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
 
   - name: install homebrew tools
     tags: brews
@@ -59,9 +55,13 @@
       # dev tools
       - jq
       - ripgrep
-      - python
-      - python@2.5
       - wget
       - s3cmd
       - awscli
       - maven@3.5
+      - moreutils # isutf8 :)
+      - parquet-tools
+      - avro-tools
+      # shell tools
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
