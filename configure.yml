@@ -137,6 +137,9 @@
                     key=AppleKeyboardUIMode
                     type=int
                     value=3
+    
+    - name: UI | Keyboard | Swap caps <-> command
+      shell: hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E3}]}'
 
     - name: UI | Trackpad | enable tap to click
       osx_defaults: domain=com.apple.AppleMultitouchTrackpad
