@@ -15,6 +15,9 @@
       homebrew: name=node state=present
       check_mode: false
 
+    - name: install NodeJS version manager
+      homebrew: name=nodenv state=present
+
     - name: install NodeJS global dev tools
       npm: state=present name={{ item }} global=yes
       with_items: "{{ global_modules }}"
