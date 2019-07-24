@@ -1,7 +1,7 @@
 ---
 - name: Python Development Environment
   hosts: all
-  tags: node
+  tags: python
   vars:
     global_libraries:
       - virtualenv
@@ -22,5 +22,4 @@
       check_mode: false
 
     - name: install Python global dev tools
-      npm: state=present name={{ item }} global=yes
-      with_items: "{{ global_libraries }}"
+      pip: state=present name={{ global_libraries }}
