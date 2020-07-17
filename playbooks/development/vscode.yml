@@ -8,7 +8,8 @@
       - akamud.vscode-theme-onelight
       - CoenraadS.bracket-pair-colorizer-2
       - eriklynd.json-tools
-      - yzhang.markdown-all-in-one
+      - esbenp.prettier-vscode
+      - golang.go
       - jebbs.plantuml
       - ms-python.python
       - mechatroner.rainbow-csv

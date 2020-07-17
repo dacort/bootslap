@@ -22,31 +22,33 @@
     tags: casks
     homebrew_cask: state=present name={{ item }}
     with_items:
-      # webdevs need all the webs (except opera lol)
+      # web browsers
       - google-chrome
-      # - firefox
-      # all of the text editors
-      - sublime-text
+      - firefox
+      # for opening different urls in different browsers
+      - finicky
+      # vs code kind of guy
       - visual-studio-code
       # javaaaaaa
       - adoptopenjdk/openjdk/adoptopenjdk8
+      - adoptopenjdk/openjdk/adoptopenjdk11
       - intellij-idea-ce
-      # virtual machine management
-      - virtualbox
       # other dev tools
       - iterm2
       - homebrew/cask-fonts/font-fira-code
       # analyst monster
-      - sqlworkbenchj
+      - tableplus
       # non-dev stuff for general productivity
-      - hammerspoon
       - 1password
       - qbserve
       - istat-menus
       # non-dev stuff for general unproductivity
       - spotify
-      # backups
+      # backups and offloaded storage
       - arq
+      - dropbox
+      # sharing localhost with others
+      - ngrok
 
   - name: install homebrew tools
     tags: brews
@@ -56,12 +58,7 @@
       - jq
       - ripgrep
       - wget
-      - s3cmd
       - awscli
-      - maven@3.5
-      - moreutils # isutf8 :)
-      - parquet-tools
-      - avro-tools
       # shell tools
       - zsh-autosuggestions
       - zsh-syntax-highlighting

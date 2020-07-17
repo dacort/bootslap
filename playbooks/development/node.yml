@@ -3,10 +3,9 @@
   hosts: all
   tags: node
   vars:
-    global_modules:
-      - pure-prompt
     node_versions:
       - 10.15.3
+      - 14.5.0
 
   tasks:
     # we need to force always_run on this because otherwise the npm-tasks following
