@@ -47,8 +47,9 @@
       # backups and offloaded storage
       - arq
       - dropbox
-      # sharing localhost with others
+      # sharing localhost with others and securing myself
       - ngrok
+      - encryptme
 
   - name: install homebrew tools
     tags: brews
