@@ -3,6 +3,7 @@
   hosts: all
   tags: node
   vars:
+    global_modules: []
     node_versions:
       - 10.15.3
       - 14.5.0
@@ -29,5 +30,5 @@
 
     - name: install Node.js virtual environment builder
       command: nodenv install {{ item }}
-      when: not nodes_installed.stdout | search( '{{ item}}' )
+      when: not nodes_installed.stdout is search( '{{ item}}' )
       with_items: "{{node_versions}}"

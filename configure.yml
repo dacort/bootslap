@@ -33,7 +33,7 @@
     - name: System | disable network .DS_Store
       osx_defaults: domain=com.apple.desktopservices
                     key=DSDontWriteNetworkStores
-                    type=string
+                    type=bool
                     value=true
 
     # TODO: check for full disk encryption! (maybe dont manually install)
@@ -45,12 +45,12 @@
     # osx::recovery_message { 'If found, please call +1 5102067426': }
     # https://github.com/boxen/puppet-osx/blob/master/manifests/recovery_message.pp
 
-  handlers:
-    - name: restart firewall
-      sudo: yes
-      shell: >
-        launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
-        launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+  # handlers:
+  #   - name: restart firewall
+  #     sudo: yes
+  #     shell: >
+  #       launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+  #       launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 
 
 
@@ -239,8 +239,8 @@
     - name:    killall SystemUIServer
       command: killall SystemUIServer
 
-    - name: restart firewall
-      sudo: yes
-      shell: >
-        launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
-        launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    # - name: restart firewall
+    #   sudo: yes
+    #   shell: >
+    #     launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    #     launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist

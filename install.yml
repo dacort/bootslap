@@ -2,7 +2,6 @@
 - name: essential tools for shell environment
   hosts: all
   tags: essential
-  sudo: false
   tasks:
   - name: install essential shell brews
     homebrew: name={{ item }} state=present
@@ -44,8 +43,8 @@
       - istat-menus
       # non-dev stuff for general unproductivity
       - spotify
-      # backups and offloaded storage
-      - arq
+      # offloaded storage
+      - homebrew/cask-versions/arq5
       - dropbox
       # sharing localhost with others and securing myself
       - ngrok
@@ -53,13 +52,15 @@
 
   - name: install homebrew tools
     tags: brews
-    homebrew: state=present name={{ item }}
-    with_items:
-      # dev tools
-      - jq
-      - ripgrep
-      - wget
-      - awscli
-      # shell tools
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
+    homebrew:
+      state: present
+      name:
+        # dev tools
+        - jq
+        - ripgrep
+        - wget
+        - awscli
+        # shell tools
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
+  

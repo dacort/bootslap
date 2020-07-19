@@ -16,10 +16,5 @@
       homebrew: name=python state=present
       check_mode: false
 
-    # We still do Python2 dev :)
-    - name: install Python2 platform
-      homebrew: name=python@2 state=present
-      check_mode: false
-
-    - name: install Python global dev tools
-      pip: state=present name={{ global_libraries }}
+    - name: install Python global dev tools but only for python3
+      pip: state=present name={{ global_libraries }} executable=pip3

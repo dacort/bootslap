@@ -193,3 +193,12 @@ worth looking into.
 #### Battleschool
 Pretty close to what I want, but utilizes its own playbooks for installing
 common software.  I'd much rather just depend on homebrew and homebrew-cask.
+
+## dacort's specifics
+
+Reviewing this again and documenting a few in-between steps I have.
+
+- Create a new SSH key (depending on machine): 
+  `ssh-keygen -t rsa -b 4096 -C "${USER}@$(hostname -s)"`
+
+- After the `install.yml` step, start up Dropbox, 1Password, and Arq and do an initial backup (or restore).
