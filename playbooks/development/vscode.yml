@@ -4,17 +4,20 @@
   tags: vscode
   vars:
     extensions:
+      - adamhartford.vscode-base64
       - akamud.vscode-theme-onedark
       - akamud.vscode-theme-onelight
+      - betterthantomorrow.calva
+      - borkdude.clj-kondo
       - CoenraadS.bracket-pair-colorizer-2
       - eriklynd.json-tools
       - esbenp.prettier-vscode
       - golang.go
+      - hashicorp.terraform
       - jebbs.plantuml
-      - ms-python.python
       - mechatroner.rainbow-csv
+      - ms-python.python
       - VisualStudioExptTeam.vscodeintellicode
-      - adamhartford.vscode-base64
 
   tasks:
     - name: install vscode
